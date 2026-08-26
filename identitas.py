@@ -1,5 +1,5 @@
 print(">*=_=_=_=_=_=_=_=_=_=_=_-----+***+-----_=_=_=_=_=_=_=_=_=_=_=*<")
-print("\t\t\t\t\tDATA IDENTITAS MAHASISWA")
+print("\t\t\t\t\tIDENTITAS MAHASISWA")
 print(">*=_=_=_=_=_=_=_=_=_=_=_-----+***+-----_=_=_=_=_=_=_=_=_=_=_=*<")
 #menampilkan garis pembuka dan judul
 
