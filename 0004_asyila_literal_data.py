@@ -1,4 +1,6 @@
 print(">***=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=***<")
+print("                         Literal Data")
+print(">***=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=***<")
 
 print("1. Membuat Program Menggunakan Variable yang Ditentukan")
 nama    = "Asyila Wadda Nafi'ah"
