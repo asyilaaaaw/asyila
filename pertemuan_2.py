@@ -31,13 +31,14 @@ print("nilai y,", nilai_y) # Pemanggilan ke 2
 
 # Program 2.3 Mengenal Tipe Data
 a = 10      # a adalah variable dengan nilai 10
+print("\n")
 # Tipe Data Interger
-data_interger = 1
+data_interger = 19000000
 print("Data     :", data_interger)
 print("- bertipe", type(data_interger))
 
 # Tipe Data Float
-data_float  = 1.5
+data_float  = 98.7
 print("Data     :", data_float)
 print("- bertipe", type(data_float))
 
@@ -71,7 +72,7 @@ data_bool   = bool(data_int)
 
 print("Data     =", data_float, "\t, Tipe   :", type(data_float))
 print("Data     =", data_str,   "\t, Tipe   :", type(data_str))
-print("Data     =", data_bool,  ", Tipe    :", type(data_bool))
+print("Data     =", data_bool,  ", Tipe   :", type(data_bool))
 
 # 2. Konversi Data Float
 data_float  = 9.2
@@ -89,9 +90,19 @@ data_int    = int(data_str)
 data_float  = float(data_str)
 data_bool   = bool(data_str)
 
-print("")
-print("")
-print("")
+print("Data     =", data_int,   ", Tipe     :", type(data_int))
+print("Data     =", data_float, ", Tipe     :", type(data_float))
+print("Data     =", data_bool,  ", Tipe     :", type(data_bool))
+
+# 4. Konversi Data Boolean
+data_bool   = True
+data_int    = int(data_bool)
+data_float  = float(data_bool)
+data_str    = str(data_bool)
+
+print("Data     =", data_int,   ", Tipe     :", type(data_int))
+print("Data     =", data_float, ", Tipe     :", type(data_float))
+print("Data     =", data_str,   ", Tipe     :", type(data_str))
 
 # Program 2.5 Mengambil Input Data dari User
     # Input data user 
@@ -102,5 +113,3 @@ print("Data     :", data,   "Tipe   :", type(data))
     #Jika ingin mengambil int, maka
 angka   = int(input("Masukan angka   :"))
 print("Data     :", angka, "Tipe    :", type(angka))
-
-
