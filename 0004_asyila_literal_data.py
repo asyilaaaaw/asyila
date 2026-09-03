@@ -15,19 +15,19 @@ print("\n")
 print("2. Mengubah Tipe Data")
 angka_string    = "123"
 angka_float     = 45.67
-angka_interger  = 89
+angka_integer  = 89
 
-    # 1. Konversi angka string menjadi interger
+    # 1. Konversi angka string menjadi integer
 data_int    = int(angka_string)
 print("Angka    =", data_int,   ", Tipe Data   :", type(data_int))
-    # 2. Konversi angka float menjadi interger
+    # 2. Konversi angka float menjadi integer
 data_int    = int(angka_float)
 print("Angka    =", data_int,   ", Tipe Data  :", type(data_int))
-    # 3. Konversi angka interger menjadi float
-data_float  = float(angka_interger)
+    # 3. Konversi angka integer menjadi float
+data_float  = float(angka_integer)
 print("Angka    =", data_float, ", Tipe Data    :", type(data_float))
-    # 4. Konversi angka interger menjadi string
-data_str    = str(angka_interger)
+    # 4. Konversi angka integer menjadi string
+data_str    = str(angka_integer)
 print("Angka    =", data_str,   ", Tipe Data  :", type(data_str))
 print("\n")
 
