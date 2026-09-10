@@ -3,6 +3,7 @@
     # Menggunakan variabel hasil =
 
     # Operasi Tambah
+print("Operasi Penjumlahan")
 a = 10
 b = 12
 hasil   = a + b
@@ -10,6 +11,7 @@ print(hasil)
 hasil   = 6 + 7      
 print(hasil)
     # Operasi Pengurangan
+print("Operasi Pengurangan")
 a = 50
 b = 20
 hasil   = a - b
@@ -17,6 +19,7 @@ print(hasil)
 hasil   = 6 - 12    
 print(hasil)
     # Operasi Perkalian
+print("Operasi Perkalian")
 a = 33
 b = 3
 hasil   = a * b
@@ -24,6 +27,7 @@ print(hasil)
 hasil   = 88 * 99   
 print(hasil)
     # Operasi Pembagian
+print("Operasi Pembagian")
 a = 44
 b = 2
 hasil   = a / b 
@@ -31,6 +35,7 @@ print(hasil)
 hasil   = 20 / 8    
 print(hasil)
     # Operasi Eksponen (pangkat)
+print("Operasi Eksponen")
 a = 4
 b = 2
 hasil   = a ** b 
@@ -38,6 +43,7 @@ print(hasil)
 hasil   = 26 ** 3   
 print(hasil)
     # Operasi Modulus
+print("Operasi Modulus")
 a = 99
 b = 2
 hasil   = a % b 
@@ -45,9 +51,10 @@ print(hasil)
 hasil   = 44 % 3    
 print(hasil)
     # Floor Division
+print("Operasi Floor Division")
 a = 67
 b = 4
-hasil   = a / b 
+hasil   = a // b 
 print(hasil)
 hasil   = 88 // 26   
 print(hasil)
@@ -127,7 +134,6 @@ a = 43
 b = 33
 hasil = a is not b
 print("a = b :", hasil)
-
 print("====================================================")
 
 
