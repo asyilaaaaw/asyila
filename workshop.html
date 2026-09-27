@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kue-Suka! Bakery & Sweets - Sule Pernah Makan Di Sini!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FFF9F2;
+        }
+        h1, h2, h3, h4, .font-fun {
+            font-family: 'Fredoka', cursive;
+        }
+        .bouncy-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .bouncy-hover:hover {
+            transform: translateY(-8px) scale(1.02) rotate(-1deg);
+        }
+        .wiggle {
+            animation: wiggle 2s infinite ease-in-out;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .blob-bg {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF3E4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF85A1;
+            border-radius: 10px;
+            border: 3px solid #FFF3E4;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': '#FF85A1',
+                        'brand-yellow': '#FFD166',
+                        'brand-mint': '#06D6A0',
+                        'brand-purple': '#B8C0FF',
+                        'brand-orange': '#FF9F1C',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#4A3E3D'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-brand-dark overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-4 z-50 max-w-6xl mx-auto px-4">
+        <div class="bg-white/90 backdrop-blur-md border-4 border-brand-dark rounded-full px-6 py-3 shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <span class="text-3xl group-hover:rotate-12 transition-transform">🧁</span>
+                <span class="text-2xl font-bold tracking-wider font-fun text-brand-pink drop-shadow">KUE-SUKA!</span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-6 font-semibold">
+                <a href="#about" class="hover:text-brand-pink transition-colors">Tentang</a>
+                <a href="#sule-badge" class="hover:text-brand-orange transition-colors">Sule Corner 👑</a>
+                <a href="#menu" class="hover:text-brand-mint transition-colors">Katalog Kue</a>
+                <a href="#testi" class="hover:text-brand-purple transition-colors">Testimoni</a>
+            </div>
+
+            <!-- Cart Trigger Button -->
+            <button onclick="toggleCart()" class="relative bg-brand-yellow hover:bg-yellow-300 border-2 border-brand-dark px-4 py-2 rounded-full font-bold flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span class="hidden sm:inline">Keranjang</span>
+                <span id="cart-count" class="bg-brand-pink text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold border border-brand-dark">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-6xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8 relative">
+        <!-- Decorative Elements -->
+        <div class="absolute top-10 left-10 text-4xl opacity-40 animate-bounce">🍩</div>
+        <div class="absolute bottom-5 right-20 text-4xl opacity-40 animate-pulse">🎂</div>
+        
+        <div class="flex-1 text-center md:text-left space-y-6">
+            <div class="inline-block bg-brand-purple/30 border-2 border-brand-dark px-4 py-1 rounded-full font-bold text-sm text-purple-900 shadow-[2px_2px_0px_0px_rgba(74,62,61,1)]">
+                ✨ Sensasi Manis Bikin Ceria Every Day! ✨
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight text-brand-dark">
+                Kue Enak,<br>
+                <span class="text-brand-pink underline decoration-wavy decoration-brand-yellow">Bikin Hati</span> Happy! 🍰
+            </h1>
+            <p class="text-lg text-gray-700 max-w-lg">
+                Dibuat dengan cinta, gula premium, dan resep rahasia yang bikin lidah bergoyang! Sekali gigit, lupa hutang (sementara)!
+            </p>
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                <a href="#menu" class="bg-brand-pink hover:bg-pink-400 text-white font-bold text-lg px-8 py-4 rounded-2xl border-3 border-brand-dark shadow-[5px_5px_0px_0px_rgba(74,62,61,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-utensils"></i> Lihat Menu Lezat
+                </a>
+                <a href="#sule-badge" class="bg-brand-mint hover:bg-emerald-300 text-brand-dark font-bold text-lg px-6 py-4 rounded-2xl border-3 border-brand-dark shadow-[5px_5px_0px_0px_rgba(74,62,61,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                    Sule aja Suka! 👑
+                </a>
+            </div>
+        </div>
+
+        <!-- Hero Graphic -->
+        <div class="flex-1 relative">
+            <div class="w-72 h-72 md:w-96 md:h-96 bg-brand-yellow blob-bg border-4 border-brand-dark mx-auto relative overflow-hidden flex items-center justify-center shadow-[10px_10px_0px_0px_rgba(74,62,61,1)]">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Kue Spesial" class="w-full h-full object-cover">
+            </div>
+            <!-- Sticker Badge -->
+            <div class="absolute -bottom-4 -left-2 bg-brand-orange text-white font-fun text-xl px-5 py-3 rounded-2xl border-3 border-brand-dark rotate-[-6deg] shadow-[4px_4px_0px_0px_rgba(74,62,61,1)] wiggle">
+                100% Tagihannya Pas! 🎉
+            </div>
+        </div>
+    </header>
+
+    <!-- Special Sule Banner Section -->
+    <section id="sule-badge" class="max-w-5xl mx-auto px-4 my-16">
+        <div class="bg-gradient-to-r from-brand-yellow via-amber-200 to-brand-orange border-4 border-brand-dark rounded-3xl p-6 md:p-10 shadow-[10px_10px_0px_0px_rgba(74,62,61,1)] relative overflow-hidden">
+            <!-- Decorative Stars -->
+            <div class="absolute top-2 right-4 text-3xl">⭐</div>
+            <div class="absolute bottom-2 left-4 text-3xl">✨</div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 z-10 relative">
+                <!-- Sule Photo Frame -->
+                <div class="relative shrink-0">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-brand-dark bg-white overflow-hidden shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] rotate-[-3deg]">
+                        <!-- Fallback image using Sule's iconic comedy/celebrity style placeholder if asset file doesn't exist locally -->
+                        <img id="sule-img" 
+                             src="assets/img/sule.jpg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80';" 
+                             alt="Foto Sule" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <!-- Stamp Badge -->
+                    <span class="absolute -bottom-2 -right-2 bg-red-500 text-white font-fun font-bold px-4 py-2 rounded-full border-2 border-brand-dark text-sm uppercase tracking-wider rotate-12 shadow">
+                        Verified Celeb!
+                    </span>
+                </div>
+
+                <!-- Text content -->
+                <div class="text-center md:text-left space-y-3">
+                    <div class="inline-block bg-white text-red-600 font-black font-fun text-xl md:text-3xl px-4 py-2 rounded-xl border-3 border-brand-dark shadow-[4px_4px_0px_0px_rgba(74,62,61,1)] uppercase tracking-wide transform hover:scale-105 transition-transform">
+                        🔥 "SULE PERNAH MAKAN DI SINI!" 🔥
+                    </div>
+                    <p class="text-lg font-semibold text-brand-dark leading-relaxed">
+                        "Prikitiw! Kuenya mantap pisan euy! Lembutnya mele mele di mulut, manisnya pas kaya senyuman doi. Sekali gigit langsung bilang: <span class="bg-white px-2 py-0.5 rounded border border-brand-dark font-fun text-brand-pink">OOO~ TIDAK BISA!</span> Nggak bisa berhenti makan!"
+                    </p>
+                    <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2">
+                        <span class="bg-brand-pink/20 border border-brand-dark text-xs font-bold px-3 py-1 rounded-full">#SuleApproved</span>
+                        <span class="bg-brand-mint/20 border border-brand-dark text-xs font-bold px-3 py-1 rounded-full">#PrikitiwDelicious</span>
+                        <span class="bg-brand-purple/20 border border-brand-dark text-xs font-bold px-3 py-1 rounded-full">#KueArtisPriangan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="menu" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center space-y-3 mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-brand-dark">Katalog Kue Paling Hits 🎂</h2>
+            <p class="text-gray-600 font-medium">Pilih kue favoritmu, klik tombolnya, dan siap-siap ketagihan!</p>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 pt-4" id="category-filters">
+                <button onclick="filterCategory('all')" class="cat-btn active bg-brand-pink text-white font-bold px-5 py-2 rounded-full border-2 border-brand-dark shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] transition-all">Semua Kue</button>
+                <button onclick="filterCategory('cake')" class="cat-btn bg-white hover:bg-brand-yellow text-brand-dark font-bold px-5 py-2 rounded-full border-2 border-brand-dark shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] transition-all">Cake Utuh</button>
+                <button onclick="filterCategory('slice')" class="cat-btn bg-white hover:bg-brand-yellow text-brand-dark font-bold px-5 py-2 rounded-full border-2 border-brand-dark shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] transition-all">Slice Cake</button>
+                <button onclick="filterCategory('snack')" class="cat-btn bg-white hover:bg-brand-yellow text-brand-dark font-bold px-5 py-2 rounded-full border-2 border-brand-dark shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] transition-all">Cemilan Lucu</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+            <!-- Dynamic products will be rendered via JS -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testi" class="bg-brand-purple/20 border-y-4 border-brand-dark py-16 my-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-brand-dark">Kata Mereka yang Udah Cobain 💬</h2>
+                <p class="text-gray-600 font-medium">Testimoni jujur tanpa rekayasa (dikit doang rekayasanya bercanda!)</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testi 1 -->
+                <div class="bg-white border-3 border-brand-dark p-6 rounded-3xl shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] bouncy-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+                        <p class="italic text-gray-700">"Sumpah rasa Tart Cokelat-nya bikin ketawa sendiri. Katanya Sule pernah makan yang ini, pantas aja langsung makin beralasan buat beli lagi!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t-2 border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-yellow border-2 border-brand-dark flex items-center justify-center font-bold font-fun text-xl">
+                            👩‍🦰
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-dark">Siti "Goyang"</h4>
+                            <p class="text-xs text-gray-500">Pecinta Manis Sejati</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 (Sule) -->
+                <div class="bg-brand-yellow/30 border-3 border-brand-dark p-6 rounded-3xl shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] bouncy-hover flex flex-col justify-between relative overflow-hidden">
+                    <span class="absolute -right-6 -top-6 bg-red-500 text-white font-fun text-xs font-bold px-8 py-3 rotate-45 border border-brand-dark">VIP REVIEW</span>
+                    <div>
+                        <div class="flex text-yellow-400 text-xl mb-3">⭐⭐⭐⭐⭐⭐ (6 Star)</div>
+                        <p class="font-semibold text-brand-dark">"Prikitiw! Kuenya empuk kaya kasur premium. Pokoknya kalau ke sini wajib borong Bolu Keju Melelehnya!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t-2 border-brand-dark/20">
+                        <div class="w-12 h-12 rounded-full bg-brand-orange border-2 border-brand-dark flex items-center justify-center font-bold font-fun text-xl">
+                            👑
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-dark">Kang Sule</h4>
+                            <p class="text-xs text-gray-600">Pelawak & Penikmat Kue Utama</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white border-3 border-brand-dark p-6 rounded-3xl shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] bouncy-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+                        <p class="italic text-gray-700">"Pesan via WhatsApp gampang banget. Begitu sampe rumah, kuenya langsung habis diperebutkan sekeluarga. Kasihan bapak cuma dapat remahannya."</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t-2 border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-mint border-2 border-brand-dark flex items-center justify-center font-bold font-fun text-xl">
+                            👦
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-dark">Budi Santoso</h4>
+                            <p class="text-xs text-gray-500">Korban Rebutan Kue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-4 border-brand-dark rounded-3xl max-w-md w-full p-6 shadow-[10px_10px_0px_0px_rgba(74,62,61,1)] relative max-h-[90vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-4 border-b-2 border-gray-200">
+                <h3 class="text-2xl font-bold font-fun text-brand-pink flex items-center gap-2">
+                    🛒 Keranjang Belanja
+                </h3>
+                <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-gray-100 border-2 border-brand-dark font-bold hover:bg-red-400 hover:text-white transition-colors">✕</button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cart-items" class="py-4 overflow-y-auto space-y-3 flex-1">
+                <!-- Cart items inserted by JS -->
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="pt-4 border-t-2 border-gray-200 space-y-4">
+                <div class="flex justify-between items-center text-lg font-bold">
+                    <span>Total Pembayaran:</span>
+                    <span id="cart-total" class="text-brand-pink text-2xl font-fun">Rp 0</span>
+                </div>
+                
+                <!-- Order Form Inputs -->
+                <div class="space-y-2">
+                    <input type="text" id="cust-name" placeholder="Nama Lengkap Kamu..." class="w-full px-4 py-2 border-2 border-brand-dark rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink text-sm">
+                    <textarea id="cust-address" placeholder="Alamat Pengiriman / Catatan..." class="w-full px-4 py-2 border-2 border-brand-dark rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-pink text-sm h-16 resize-none"></textarea>
+                </div>
+
+                <button onclick="checkoutWA()" class="w-full bg-brand-mint hover:bg-emerald-400 text-brand-dark font-bold py-3 rounded-2xl border-3 border-brand-dark shadow-[4px_4px_0px_0px_rgba(74,62,61,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl text-emerald-800"></i> Pesan via WhatsApp Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-dark text-white pt-12 pb-8 border-t-4 border-brand-yellow">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-gray-700">
+            <!-- Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-3xl">🧁</span>
+                    <span class="text-2xl font-bold font-fun text-brand-pink">KUE-SUKA!</span>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Toko kue paling ceria & gokil se-Indonesia! Menyajikan berbagai pilihan bakery dan dessert manis yang terbukti disukai komedian papan atas.
+                </p>
+                <div class="bg-brand-orange/20 border border-brand-orange text-brand-yellow px-3 py-2 rounded-xl text-xs font-semibold">
+                    👑 "Sule Pernah Makan Di Sini & Menyetujuinya!"
+                </div>
+            </div>
+
+            <!-- Location & Hours -->
+            <div class="space-y-3">
+                <h4 class="text-xl font-bold font-fun text-brand-yellow">📍 Markas Kue</h4>
+                <p class="text-gray-300 text-sm">
+                    Jl. Prikitiw Manis No. 77, Bandung, Jawa Barat (Sebelah Saung Kebahagiaan)
+                </p>
+                <h4 class="text-xl font-bold font-fun text-brand-yellow pt-2">⏰ Jam Operasional</h4>
+                <p class="text-gray-300 text-sm">
+                    Senin - Minggu: 08.00 - 21.00 WIB<br>
+                    (Tanggal Merah Tetap Manis!)
+                </p>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div class="space-y-3">
+                <h4 class="text-xl font-bold font-fun text-brand-yellow">📲 Hubungi Kami</h4>
+                <p class="text-gray-300 text-sm">WhatsApp Admin: +62 897-6891-736</p>
+                <div class="flex gap-3 pt-2">
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-pink border-2 border-white flex items-center justify-center text-white hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-mint border-2 border-white flex items-center justify-center text-brand-dark hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-yellow border-2 border-white flex items-center justify-center text-brand-dark hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-facebook text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 pt-6 text-center text-xs text-gray-400">
+            © 2026 Kue-Suka! Bakery. Created with ❤️ for happy tummy. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Produk
+        const products = [
+            {
+                id: 1,
+                name: "Tart Cokelat Prikitiw",
+                category: "cake",
+                price: 145000,
+                desc: "Kue tart cokelat lumer dengan topping choco chip melimpah. Pilihan favorit Kang Sule!",
+                badge: "Sule's Choice 👑",
+                badgeBg: "bg-brand-orange",
+                img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                name: "Strawberry Rainbow Fluffy",
+                category: "cake",
+                price: 130000,
+                desc: "Lapis pelangi warna-warni ceria dipadu krim stroberi segar bikin harimu penuh warna.",
+                badge: "Best Seller 🔥",
+                badgeBg: "bg-brand-pink text-white",
+                img: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                name: "Bolu Keju Meleleh",
+                category: "cake",
+                price: 85000,
+                desc: "Kejunya melimpah sampai tumpah-tumpah, bolunya super lembut bagaikan awan.",
+                badge: "Gurih Manis 🧀",
+                badgeBg: "bg-brand-yellow",
+                img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                name: "Slice Red Velvet Smile",
+                category: "slice",
+                price: 28000,
+                desc: "Satu potong kebahagiaan red velvet dengan cream cheese yang melted di lidah.",
+                badge: "Cemilan Pas 🍰",
+                badgeBg: "bg-brand-purple text-white",
+                img: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: "Matcha Tiramisu Pot",
+                category: "slice",
+                price: 32000,
+                desc: "Paduan renyah tiramisu dan green tea asli dari kebun pilihan.",
+                badge: "Fresh & Calm 🍃",
+                badgeBg: "bg-brand-mint text-white",
+                img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                name: "Donat Karamel Senyum",
+                category: "snack",
+                price: 12000,
+                desc: "Donat empuk dengan glaze karamel krispi dan hiasan wajah tersenyum.",
+                badge: "Mood Booster 🍩",
+                badgeBg: "bg-brand-yellow",
+                img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // Shopping Cart State
+        let cart = [];
+
+        // Render Products
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border-3 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(74,62,61,1)] bouncy-hover flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 overflow-hidden border-b-3 border-brand-dark">
+                            <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 ${product.badgeBg} border-2 border-brand-dark px-3 py-1 rounded-full font-fun text-xs font-bold shadow">
+                                ${product.badge}
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-xl font-bold font-fun text-brand-dark">${product.name}</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">${product.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 flex items-center justify-between mt-4">
+                        <span class="text-xl font-extrabold font-fun text-brand-pink">
+                            Rp ${product.price.toLocaleString('id-ID')}
+                        </span>
+                        <button onclick="addToCart(${product.id})" class="bg-brand-yellow hover:bg-yellow-300 border-2 border-brand-dark px-4 py-2 rounded-xl font-bold text-sm shadow-[3px_3px_0px_0px_rgba(74,62,61,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Pesan
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Category
+        function filterCategory(category) {
+            // Update active button UI
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-pink', 'text-white');
+                btn.classList.add('bg-white', 'text-brand-dark');
+            });
+
+            event.target.classList.remove('bg-white', 'text-brand-dark');
+            event.target.classList.add('bg-brand-pink', 'text-white');
+
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Cart Logic
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showNotification(`"${product.name}" dimasukkan ke keranjang! 🎉`);
+        }
+
+        function updateCartQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Update Count Badge
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cart-count').innerText = totalQty;
+
+            // Render Cart Modal Items
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <span class="text-4xl block mb-2">🧁</span>
+                        <p class="font-medium">Keranjang kamu masih kosong nih...</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center justify-between bg-brand-cream border-2 border-brand-dark p-3 rounded-2xl';
+                    row.innerHTML = `
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm text-brand-dark">${item.name}</h4>
+                            <p class="text-xs text-brand-pink font-semibold">Rp ${(item.price * item.qty).toLocaleString('id-ID')}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateCartQty(${item.id}, -1)" class="w-7 h-7 bg-white border border-brand-dark rounded-lg font-bold hover:bg-red-200">-</button>
+                            <span class="font-bold text-sm w-4 text-center">${item.qty}</span>
+                            <button onclick="updateCartQty(${item.id}, 1)" class="w-7 h-7 bg-white border border-brand-dark rounded-lg font-bold hover:bg-green-200">+</button>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+            }
+
+            // Calculate Total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-total').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // WhatsApp Checkout
+        function checkoutWA() {
+            if (cart.length === 0) {
+                alert('Pilih minimal satu kue dulu yaa!');
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value || 'Pelanggan Ceria';
+            const address = document.getElementById('cust-address').value || 'Ambil di Toko';
+
+            let orderText = `Halo Admin Kue-Suka! 🧁%0ANama: ${encodeURIComponent(name)}%0AAlamat: ${encodeURIComponent(address)}%0A%0APesanan Saya:%0A`;
+            
+            cart.forEach((item, idx) => {
+                orderText += `${idx + 1}. ${item.name} (${item.qty}x) = Rp ${(item.price * item.qty).toLocaleString('id-ID')}%0A`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            orderText += `%0ATotal Pembayaran: *Rp ${total.toLocaleString('id-ID')}*%0A%0ASaya pesan dari rekomendasi Sule ya! 👑`;
+
+            const phone = "6281234567890"; // Ganti dengan nomor WhatsApp Toko
+            window.open(`https://wa.me/${phone}?text=${orderText}`, '_blank');
+        }
+
+        // Floating Toast Notification
+        function showNotification(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 bg-brand-dark text-white font-bold px-5 py-3 rounded-2xl border-2 border-brand-yellow shadow-lg z-50 animate-bounce';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initial Load
+        window.onload = function() {
+            renderProducts(products);
+        };
+    </script>
+</body>
+</html>"
